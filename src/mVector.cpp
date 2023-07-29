@@ -41,6 +41,27 @@ namespace mStd
         return mAllocatedMemSize;
     }
 
+    int 
+    mVector::front(void) const
+    {
+        return mData[mBufferNumber][0];
+    }
+    
+    int 
+    mVector::back(void) const
+    {
+        return mData[mBufferNumber][mSize-1];
+    }
+        
+    int 
+    mVector::at(uint32_t index) const
+    {   
+        if(index > mSize)
+            throw std::overflow_error("request bigger than data size");
+
+        return mData[mBufferNumber][index];
+    }
+
     void 
     mVector::printData(void)
     {
@@ -101,8 +122,6 @@ namespace mStd
     int 
     mVector::operator[](int i)
     {
-        if(i > mSize)
-            throw std::overflow_error("request bigger than data size");
         return mData[mBufferNumber][i];
     }
 

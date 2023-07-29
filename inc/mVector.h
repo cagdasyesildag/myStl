@@ -19,6 +19,9 @@ namespace mStd
         void popBack(void);
         int memAllocSize(void) const;
         int* data(void) const;
+        int front(void) const;
+        int back(void) const;
+        int at(uint32_t) const;
         int operator[](int i);
         void operator=(const mVector vec);
         bool operator==(const mVector vec);

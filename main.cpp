@@ -17,7 +17,10 @@ void realVector(void)
     std::vector<int> ops{1,2,3,4,5};
     for(auto x : ops)
         std::cout<< x << ", ";
-    std::cout<< std::endl;
+    std::cout<<std::endl;
+    std::cout<< "front : "<<ops.front() <<std::endl;
+    std::cout<< "back : "<<ops.back() <<std::endl;
+    std::cout<< "at 2 :"<< ops.at(2) <<std::endl;
 }
 void mVector(void)
 {
@@ -52,4 +55,9 @@ void mVector(void)
         std::cout<< "they are not equal"<< std::endl;
     else
         std::cout<< "they are equal"<< std::endl;
+
+    mStd::mVector newVec1{1,2,3,4};
+    std::cout<< "front : "<<nVec.front() <<std::endl;
+    std::cout<< "back : "<<nVec.back() <<std::endl;
+    std::cout<< "at 2 :"<< nVec.at(2) <<std::endl;
 }
