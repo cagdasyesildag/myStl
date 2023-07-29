@@ -14,12 +14,7 @@ int main()
 
 void realVector(void)
 {
-    std::vector<int> ops;
-    ops.push_back(12);
-    ops.push_back(15);
-    ops.push_back(3);
-    ops.pop_back();
-
+    std::vector<int> ops{1,2,3,4,5};
     for(auto x : ops)
         std::cout<< x << ", ";
     std::cout<< std::endl;
@@ -41,4 +36,20 @@ void mVector(void)
     std::cout<< mVec.memAllocSize() << std::endl;
 
     mVec.printData();
+
+    mStd::mVector newVec = mVec;
+    for(uint8_t i= 0; i< 2; i++)
+        std::cout<< newVec[i] << ": ";
+    std::cout<< std::endl;
+    mStd::mVector vecc(9, 2);
+    vecc.pushBack(3);
+    vecc.printData();
+    mStd::mVector nVec{1,2,3,4};
+    nVec.printData();
+    mStd::mVector copyVec(nVec);
+    copyVec.printData();
+    if(copyVec != nVec)
+        std::cout<< "they are not equal"<< std::endl;
+    else
+        std::cout<< "they are equal"<< std::endl;
 }

@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include <initializer_list>
 namespace mStd
 {
     class mVector
@@ -11,13 +11,19 @@ namespace mStd
         int mAllocatedMemSize;
     public:
         mVector();
+        mVector(uint32_t size, int value);
+        mVector(std::initializer_list<int> l);
         ~mVector();
         void printData(void);
         void pushBack(int);
         void popBack(void);
         int memAllocSize(void) const;
+        int* data(void) const;
+        int operator[](int i);
+        void operator=(const mVector vec);
+        bool operator==(const mVector vec);
+        bool operator!=(const mVector vec);
     private:
-
-        int switchBuffer(void);
+        void switchBuffer(void);
     };
 }

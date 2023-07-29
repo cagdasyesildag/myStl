@@ -1,14 +1,32 @@
 #include "mVector.h"
+#include <cmath>
 #include <iostream>
+#include <algorithm>
 
 namespace mStd
 {
     mVector::mVector():
+        mBufferNumber(0),
         mSize(0),
-        mAllocatedMemSize(0),
-        mBufferNumber(0)
+        mAllocatedMemSize(0)
     {
 
+    }
+
+    mVector::mVector(uint32_t size, int value):
+        mBufferNumber(0),
+        mSize(size)
+    {
+        mAllocatedMemSize = ceil((float)mSize / BUFFER_STEP_SIZE)*BUFFER_STEP_SIZE;
+        mData[mBufferNumber] = new int[mAllocatedMemSize];
+        std::fill_n(mData[mBufferNumber], mSize, value);
+    }
+
+    mVector::mVector(std::initializer_list<int> l):
+        mVector()
+    {
+        for(int x : l)
+            pushBack(x);
     }
 
     mVector::~mVector()
@@ -74,7 +92,53 @@ namespace mStd
         }
     }
 
+    int* 
+    mVector::data(void) const
+    {
+        return mData[mBufferNumber];
+    }
+
     int 
+    mVector::operator[](int i)
+    {
+        if(i > mSize)
+            throw std::overflow_error("request bigger than data size");
+        return mData[mBufferNumber][i];
+    }
+
+    void 
+    mVector::operator=(const mVector vec)
+    {
+        mBufferNumber = vec.mBufferNumber;
+        mAllocatedMemSize = vec.mAllocatedMemSize;
+        mSize = vec.mSize;
+
+        mData[mBufferNumber] = new int[mAllocatedMemSize];
+        std::copy(vec.data(), vec.data()+vec.mSize, mData[mBufferNumber]);
+    }
+
+    bool
+    mVector:: operator==(const mVector vec)
+    {
+        if(mSize!= vec.mSize)
+            return false;
+        int* buff = vec.data();
+        
+        for(int i= 0; i< mSize; i++)
+        {
+            if(mData[mBufferNumber][i]!= *(buff+i))
+                return false;
+        }
+        return true;
+    }
+
+    bool 
+    mVector::operator!=(const mVector vec)
+    {
+        return (*this==vec)? false:true;
+    }
+
+    void 
     mVector::switchBuffer(void)
     {
        int* oldBuffer = mData[mBufferNumber];
