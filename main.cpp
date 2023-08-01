@@ -1,6 +1,7 @@
 #include <iostream>
 #include "mVector.h"
 #include <vector>
+#include <algorithm>
 
 void realVector(void);
 void mVector(void);
@@ -60,6 +61,22 @@ void mVector(void)
     std::cout<< "front : "<<nVec.front() <<std::endl;
     std::cout<< "back : "<<nVec.back() <<std::endl;
     std::cout<< "at 2 :"<< nVec.at(2) <<std::endl;
-    newVec1.clear();
-    newVec1.printData();
+
+    for(auto i : newVec1)
+    {
+        std::cout<< i << ",";
+    }
+    std::cout<< std::endl;
+    auto mIt = std::find(newVec1.begin(), newVec1.end(), 5);
+    if(mIt != newVec1.end())
+    {
+        std::cout << "data found : ";
+        std::cout<< *mIt<< std::endl;
+    }
+    else
+    {
+        std::cout << "data can not found";
+    }
+   
+
 }

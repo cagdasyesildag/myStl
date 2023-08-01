@@ -187,5 +187,4 @@ namespace mStd
        }
        std:: cout<< "buffer switched"<< std::endl;
     }
-
 }
