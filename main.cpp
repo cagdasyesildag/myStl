@@ -28,15 +28,15 @@ void mVector(void)
     mVec.pushBack(12);
     mVec.pushBack(15);
     mVec.pushBack(3);
-    std::cout<< mVec.memAllocSize() << std::endl;
+    std::cout<< mVec.capacity() << std::endl;
     mVec.pushBack(6);
     mVec.pushBack(1);
     mVec.pushBack(2);
-    std::cout<< mVec.memAllocSize() << std::endl;
+    std::cout<< mVec.capacity() << std::endl;
     mVec.popBack();
     mVec.popBack();
     mVec.popBack();
-    std::cout<< mVec.memAllocSize() << std::endl;
+    std::cout<< mVec.capacity() << std::endl;
 
     mVec.printData();
 
@@ -60,4 +60,6 @@ void mVector(void)
     std::cout<< "front : "<<nVec.front() <<std::endl;
     std::cout<< "back : "<<nVec.back() <<std::endl;
     std::cout<< "at 2 :"<< nVec.at(2) <<std::endl;
+    newVec1.clear();
+    newVec1.printData();
 }

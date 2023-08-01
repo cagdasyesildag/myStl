@@ -36,9 +36,18 @@ namespace mStd
     }
 
     int 
-    mVector:: memAllocSize(void) const
+    mVector:: capacity(void) const
     {
         return mAllocatedMemSize;
+    }
+
+    void 
+    mVector::clear(void)
+    {
+        delete  mData[mBufferNumber];
+        mBufferNumber= 0;
+        mSize = 0;
+        mAllocatedMemSize = 0;
     }
 
     int 
@@ -65,7 +74,7 @@ namespace mStd
     void 
     mVector::printData(void)
     {
-        for(int i = 0; i < mSize; i++)
+        for(uint32_t i = 0; i < mSize; i++)
             std::cout<< mData[mBufferNumber][i]<< ", ";
         std:: cout<< std:: endl;
 
@@ -143,7 +152,7 @@ namespace mStd
             return false;
         int* buff = vec.data();
         
-        for(int i= 0; i< mSize; i++)
+        for(uint32_t i= 0; i< mSize; i++)
         {
             if(mData[mBufferNumber][i]!= *(buff+i))
                 return false;
@@ -170,7 +179,7 @@ namespace mStd
 
        if(mSize)
        {
-            for(int i = 0; i < mSize; i++)
+            for(uint32_t i = 0; i < mSize; i++)
             {
                     newBuffer[i] = oldBuffer[i];
             }
