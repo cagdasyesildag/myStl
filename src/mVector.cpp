@@ -35,10 +35,37 @@ namespace mStd
             delete mData[mBufferNumber];
     }
 
+    uint32_t 
+    mVector::size(void) const
+    {
+        return mSize;
+    }
+
     int 
     mVector:: capacity(void) const
     {
         return mAllocatedMemSize;
+    }
+
+    void 
+    mVector::reserve(uint32_t size)
+    {
+        mAllocatedMemSize = size;
+        switchBuffer();
+    }
+
+    void 
+    mVector::shrink_to_fit(void)
+    {
+        mAllocatedMemSize = mSize;
+        switchBuffer();
+    }
+
+    void 
+    mVector::resize(uint32_t size)
+    {
+        mAllocatedMemSize = size;
+        switchBuffer();
     }
 
     void 

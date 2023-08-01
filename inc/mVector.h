@@ -18,7 +18,7 @@ namespace mStd
         pointer operator->() {return mPtr;}
         Iterator& operator++() {mPtr++; return *this;}
         Iterator operator++(int) {Iterator tmp = *this; ++(*this); return tmp;}
-
+        
         friend bool operator==(const Iterator& a, const Iterator& b) {return (a.mPtr == b.mPtr);}
         friend bool operator!=(const Iterator& a, const Iterator& b) {return (a.mPtr != b.mPtr);}
     private:
@@ -42,9 +42,13 @@ namespace mStd
         void printData(void);
         void pushBack(int);
         void popBack(void);
+        uint32_t size(void) const;
         int capacity(void) const;
-        int* data(void) const;
+        void reserve(uint32_t);
+        void shrink_to_fit(void);
+        void resize(uint32_t);
         void clear(void);
+        int* data(void) const;
         int front(void) const;
         int back(void) const;
         int at(uint32_t) const;
