@@ -121,11 +121,39 @@ namespace mStd
             catch(const std::exception& e)
             {
                 std::cerr << e.what() << '\n';
-            }
-            
+            }  
         }
         mData[mBufferNumber][mSize] = data;
         mSize++;        
+    }
+
+    Iterator 
+    mVector::insert(Iterator position , int val)
+    {
+        if((mSize + 1) > mAllocatedMemSize)
+        {
+            mAllocatedMemSize+= BUFFER_STEP_SIZE;
+            try
+            {
+                switchBuffer();
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }  
+        }
+        
+        Iterator it = this->end();
+        while(it != position)
+        {
+            Iterator tmp = it;
+            *(tmp+1) = *it;
+            it--;
+        }
+        *(position + 1) = *position;
+        *position = val;
+        mSize++;
+        return position;
     }
 
     void 
