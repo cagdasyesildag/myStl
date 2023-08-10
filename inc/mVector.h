@@ -14,6 +14,8 @@ namespace mStd
 
         Iterator(pointer ptr):
             mPtr(ptr){}
+        Iterator(const mStd::Iterator& it) {mPtr = it.mPtr;}
+
         reference operator*()const{return *mPtr;}
         pointer operator->() {return mPtr;}
         Iterator& operator++() {mPtr++; return *this;}
@@ -47,6 +49,7 @@ namespace mStd
         mVector();
         mVector(uint32_t size, int value);
         mVector(std::initializer_list<int> l);
+        mVector(const mStd::mVector& vec);
         ~mVector();
         Iterator begin(){return Iterator(&mData[mBufferNumber][0]);}
         Iterator end(){return Iterator(&mData[mBufferNumber][mSize]);}

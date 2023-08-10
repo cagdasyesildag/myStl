@@ -13,6 +13,16 @@ namespace mStd
 
     }
 
+    mVector::mVector(const mStd::mVector& vec)
+    {
+        mBufferNumber = vec.mBufferNumber;
+        mAllocatedMemSize = vec.mAllocatedMemSize;
+        mSize = vec.mSize;
+
+        mData[mBufferNumber] = new int[mAllocatedMemSize];
+        std::copy(vec.data(), vec.data()+vec.mSize, mData[mBufferNumber]);
+    }
+
     mVector::mVector(uint32_t size, int value):
         mBufferNumber(0),
         mSize(size)
