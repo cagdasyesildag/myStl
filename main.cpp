@@ -35,7 +35,7 @@ void mVector(void)
     mVec.insert(mVec.end(), 4);
     mVec.printData();
 
-   std::sort(mVec.begin(), mVec.end());
+    std::sort(mVec.begin(), mVec.end());
     mVec.printData();
 
 }
